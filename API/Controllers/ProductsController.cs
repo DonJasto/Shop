@@ -24,7 +24,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public string GetProduct(int id)
         {
-            return "list of product";
+            return "product";
         }
     }
 }
