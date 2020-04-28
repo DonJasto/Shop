@@ -307,6 +307,12 @@ __pycache__/
 !.vscode/launch.json
 !.vscode/extensions.json
 
+### Shop ###
+obj
+bin
+appsettings.json
+*.db
+
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
