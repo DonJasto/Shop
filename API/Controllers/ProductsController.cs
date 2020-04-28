@@ -1,4 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using API.Data;
+using API.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -6,14 +12,22 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
+        private readonly StoreContext _context;
+        public ProductsController(StoreContext context)
+        {
+            _context = context;
+        }
+
         /// <summary>
         /// Api for get list of products
         /// </summary>
         /// <returns>List of products</returns>
         [HttpGet]
-        public string GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            return "list of products";
+            var products = await _context.Products.ToListAsync();
+
+            return Ok(products);
         }
 
         /// <summary>
@@ -22,9 +36,10 @@ namespace API.Controllers
         /// <param name="id"></param>
         /// <returns>Product</returns>
         [HttpGet("{id}")]
-        public string GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return "product";
+            var product = await _context.Products.FindAsync(id);
+            return Ok(product);
         }
     }
 }
