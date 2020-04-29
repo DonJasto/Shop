@@ -21,7 +21,7 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Api for get list of products
+        /// Api for get list orvar brands
         /// </summary>
         /// <returns>List of products</returns>
         [HttpGet]
@@ -42,6 +42,30 @@ namespace API.Controllers
         {
             var product = await _repo.GetProductByIdAsync(id);
             return Ok(product);
+        }
+
+        /// <summary>
+        /// Api for get list of brands
+        /// </summary>
+        /// <returns>List of brands</returns>
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductsBrands()
+        {
+            var brands = await _repo.GetProductBrandsAsync();
+
+            return Ok(brands);
+        }
+
+        /// <summary>
+        /// Api for get list of types
+        /// </summary>
+        /// <returns>List of types</returns>
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductsTypes()
+        {
+            var type = await _repo.GetProductTypesAsync();
+
+            return Ok(type);
         }
     }
 }
