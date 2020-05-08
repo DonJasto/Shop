@@ -1,5 +1,5 @@
-import { IPagination } from './Models/pagination';
-import { IProduct } from './Models/product';
+import { IPagination } from './shared/Models/pagination';
+import { IProduct } from './shared/Models/product';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
