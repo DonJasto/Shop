@@ -22,7 +22,7 @@ export class ProductDetailsComponent implements OnInit {
 
   loadProduct() {
     this.shopService
-      //cast to int
+      // cast to int
       .getProduct(+this.activateRoute.snapshot.paramMap.get('id'))
       .subscribe(
         (product) => {
