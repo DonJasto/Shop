@@ -1,3 +1,4 @@
+import { TestErrorComponent } from './core/test-error/test-error.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -6,6 +7,7 @@ import { ProductDetailsComponent } from './shop/product-details/product-details.
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'test-error', component: TestErrorComponent },
   {
     path: 'shop',
     loadChildren: () =>
