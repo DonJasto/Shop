@@ -52,6 +52,7 @@
             style="width: 300px;"
             placeholder="Search"
             type="text"
+            (keyup.enter)="onSearch()"
           />
           <button class="btn btn-outline-primary my-2" (click)="onSearch()">
             Search
