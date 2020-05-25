@@ -9,11 +9,12 @@ import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 // have to make it Injectable
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -23,6 +24,12 @@ export class ErrorInterceptor implements HttpInterceptor {
       // tslint:disable-next-line: no-shadowed-variable
       catchError((error) => {
         if (error) {
+          if (error.status === 400) {
+            this.toastr.error(error.error.message, error.error.statusCode);
+          }
+          if (error.status === 401) {
+            this.toastr.error(error.error.message, error.error.statusCode);
+          }
           if (error.status === 404) {
             this.router.navigateByUrl('/not-found');
           }
