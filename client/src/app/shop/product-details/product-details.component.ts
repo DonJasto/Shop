@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/shared/Models/product';
 import { ShopService } from '../shop.service';
 import { error } from 'util';
 import { ActivatedRoute } from '@angular/router';
+import { BreadcrumbService } from 'xng-breadcrumb';
 
 @Component({
   selector: 'app-product-details',
@@ -13,7 +14,8 @@ export class ProductDetailsComponent implements OnInit {
   product: IProduct;
   constructor(
     private shopService: ShopService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private bcService: BreadcrumbService
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class ProductDetailsComponent implements OnInit {
       .subscribe(
         (product) => {
           this.product = product;
+          this.bcService.set('@productDetails', product.name);
         },
 
         // tslint:disable-next-line: no-shadowed-variable
