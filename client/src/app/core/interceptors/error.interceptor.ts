@@ -8,7 +8,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { Router, NavigationExtras } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, delay } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 // have to make it Injectable
@@ -22,6 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       // tslint:disable-next-line: no-shadowed-variable
+
       catchError((error) => {
         if (error) {
           if (error.status === 400) {
